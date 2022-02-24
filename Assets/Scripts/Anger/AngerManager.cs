@@ -15,6 +15,10 @@ public class AngerManager : MonoBehaviour
         angerBar = FindObjectOfType<AngerBarController>();
     }
 
+    private void Start() {
+        angerBar.UpdateBar(currentAnger / maxAnger);
+    }
+
     public void IncreaseAnger() {
         currentAnger += angerPerClick;
         if (currentAnger >= maxAnger) {
