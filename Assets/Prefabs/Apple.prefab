@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reduceAngerValue: 1
+  scorePoints: 1
 --- !u!58 &6415003825361774635
 CircleCollider2D:
   m_ObjectHideFlags: 0
