@@ -9,10 +9,12 @@ public class AngerManager : MonoBehaviour
     float currentAnger;
 
     AngerBarController angerBar;
+    PlayerController player;
 
     private void Awake() {
         ResetAnger();
         angerBar = FindObjectOfType<AngerBarController>();
+        player = FindObjectOfType<PlayerController>();
     }
 
     private void Start() {
@@ -29,7 +31,7 @@ public class AngerManager : MonoBehaviour
         currentAnger += angerPerClick;
         if (currentAnger >= maxAnger) {
             currentAnger = maxAnger;
-            //TODO: Player set Angry
+            player.AngryPlayer();
         }
         angerBar.UpdateBar(currentAnger / maxAnger);
     }

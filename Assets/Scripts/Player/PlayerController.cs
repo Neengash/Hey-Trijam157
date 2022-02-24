@@ -8,8 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed;
     Vector2 destination;
     Coroutine currentCoroutine;
-
     AngerManager angerManager;
+    Animator animator;
+    AudioSource audioSource;
 
     public enum PlayerMood {
         Happy = 0,
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
         destination = new Vector2(0,0);
         mood = PlayerMood.Happy;
         angerManager = FindObjectOfType<AngerManager>();
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public bool CanMove() {
@@ -41,5 +44,19 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         currentCoroutine = null;
+    }
+
+    public void AngryPlayer() {
+        mood = PlayerMood.Angry;
+        animator.SetTrigger("Angry");
+        audioSource.Play();
+        destination = transform.position;
+        StopCoroutine(currentCoroutine);
+        currentCoroutine = null;
+    }
+
+    public void EndAngry() {
+        mood = PlayerMood.Happy;
+        angerManager.ResetAnger();
     }
 }

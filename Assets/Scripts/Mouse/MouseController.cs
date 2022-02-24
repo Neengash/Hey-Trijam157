@@ -18,15 +18,15 @@ public class MouseController : MonoBehaviour
         transform.position = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetMouseButtonDown(0)) {
+            audioSource.Play();
             if (player.CanMove()) {
                 angerManager.IncreaseAnger();
-                audioSource.Play();
+                RaycastHit2D hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+                if (hit) {
+                    player.UpdateDestination(hit.point);
+                }
             }
 
-            RaycastHit2D hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if (hit) {
-                player.UpdateDestination(hit.point);
-            }
         }
     }
 
