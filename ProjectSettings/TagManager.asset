@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Food
+    uniqueID: 4116944567
+    locked: 0
   - name: Mouse
     uniqueID: 2230498777
     locked: 0

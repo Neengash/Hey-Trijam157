@@ -11,14 +11,25 @@ public class PlayerController : MonoBehaviour
 
     AngerManager angerManager;
 
+    public enum PlayerMood {
+        Happy = 0,
+        Angry = 1
+    }
+
+    PlayerMood mood;
+
     private void Awake() {
         destination = new Vector2(0,0);
+        mood = PlayerMood.Happy;
         angerManager = FindObjectOfType<AngerManager>();
+    }
+
+    public bool CanMove() {
+        return mood != PlayerMood.Angry;
     }
 
     public void UpdateDestination(Vector2 newDestination) {
         destination = newDestination;
-        angerManager.IncreaseAnger();
         if (currentCoroutine == null) {
             currentCoroutine = StartCoroutine(Move());
         }
