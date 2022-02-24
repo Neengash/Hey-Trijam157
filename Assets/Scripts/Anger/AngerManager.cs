@@ -12,9 +12,9 @@ public class AngerManager : MonoBehaviour
     PlayerController player;
 
     private void Awake() {
-        ResetAnger();
         angerBar = FindObjectOfType<AngerBarController>();
         player = FindObjectOfType<PlayerController>();
+        ResetAnger();
     }
 
     private void Start() {
@@ -38,5 +38,6 @@ public class AngerManager : MonoBehaviour
 
     public void ResetAnger() {
         currentAnger = 0f;
+        angerBar.UpdateBar(currentAnger/maxAnger);
     }
 }

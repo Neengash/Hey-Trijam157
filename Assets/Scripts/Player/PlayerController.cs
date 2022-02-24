@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     }
 
     IEnumerator Move() {
-        while (Vector2.Distance(destination, (Vector2)transform.position) > destinationDistance) {
+        while (mood != PlayerMood.Angry && Vector2.Distance(destination, (Vector2)transform.position) > destinationDistance) {
             transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
             yield return null;
         }
@@ -50,8 +50,8 @@ public class PlayerController : MonoBehaviour
         mood = PlayerMood.Angry;
         animator.SetTrigger("Angry");
         audioSource.Play();
+        StopAllCoroutines();
         destination = transform.position;
-        StopCoroutine(currentCoroutine);
         currentCoroutine = null;
     }
 

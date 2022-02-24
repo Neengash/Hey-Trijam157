@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour
     [SerializeField] float startTime;
     TextMeshProUGUI text;
     float remainingTime;
+    [SerializeField] GameObject gameOverCanvas;
 
     private void Awake() {
         text = GetComponent<TextMeshProUGUI>();
@@ -22,7 +23,7 @@ public class Timer : MonoBehaviour
         remainingTime -= Time.deltaTime;
         if (remainingTime <= 0) {
             remainingTime = 0;
-            // TODO : STOP GAME
+            gameOverCanvas.SetActive(true);
         }
         text.text = GetTimeString();
     }
